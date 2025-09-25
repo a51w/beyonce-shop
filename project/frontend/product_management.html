@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Management - BEYONCE Shop</title>
+
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --main-color: #0052cc;
+      --accent-color: #ffdd57;
+      --bg-color: #f4f7fb;
+      --card-bg: #ffffff;
+      --text-color: #111827;
+      --font: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--main-color);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 15px 0;
+      background-color: white;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--main-color);
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--main-color);
+      color: white;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: var(--card-bg);
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: var(--main-color);
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    form .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #f9fafb;
+      transition: border 0.3s;
+    }
+
+    .form-group input:focus {
+      border: 1px solid var(--main-color);
+      outline: none;
+    }
+
+    .btn {
+      background-color: var(--main-color);
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #003b99;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      padding: 12px 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table thead {
+      background-color: var(--main-color);
+      color: white;
+    }
+
+    table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    table tbody tr:hover {
+      background-color: #eef3ff;
+    }
+    footer {
+        background: #111827;
+        color: #eee;
+        text-align: center;
+        padding: 24px 0;
+        margin-top: 60px;
+        font-size: 14px;
+        
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      table th, table td {
+        padding: 10px 6px;
+      }
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1;
+    }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Product Management - BEYONCE Shop</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index_admin.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
+      <li><a href="product_management.html"><i class="fas fa-boxes"></i> Product Management</a></li>
+      <li><a href="order_tracking.html"><i class="fas fa-clipboard-list"></i> Orders</a></li>
+      <li><a href="cusmoter_review_admin.html"><i class="fas fa-star"></i> Customer Reviews</a></li>
+      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+      <li><a href="index.html" onclick="return logoutConfirm();">Log out</a></li>
+    </ul>
+  </nav>
+  
+  <script>
+    function logoutConfirm() {
+      alert("Thank you for visiting BEYONCE Shop. See you again soon! 🛍️");
+      return true; // ดำเนินการไปยัง index.html
+    }
+  
+  </script>
+
+  <div class="container">
+    <h2>Add New Product</h2>
+    <form id="addProductForm">
+      <div class="form-group">
+        <label for="productId">Product ID</label>
+        <input type="text" id="productId" required />
+      </div>
+      <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName" required />
+      </div>
+      <div class="form-group">
+        <label for="productPrice">Price (฿)</label>
+        <input type="number" id="productPrice" required />
+      </div>
+      <div class="form-group">
+        <label for="productStock">Stock Quantity</label>
+        <input type="number" id="productStock" required />
+      </div>
+      <button type="submit" class="btn">Add Product</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <h2>Product List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="productList">
+        <!-- รายการสินค้าจะถูกเพิ่มที่นี่ -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // ฟังก์ชันเพื่อโหลดข้อมูลจาก LocalStorage
+    function loadProducts() {
+      const products = JSON.parse(localStorage.getItem('products')) || [];
+      const table = document.getElementById('productList');
+      table.innerHTML = '';  // เคลียร์ข้อมูลเก่าทุกครั้งที่โหลดใหม่
+
+      products.forEach(product => {
+        const row = table.insertRow();
+        row.innerHTML = `
+          <td>${product.product_id}</td>
+          <td>${product.product_name}</td>
+          <td>฿${product.price}</td>
+          <td>${product.stock}</td>
+          <td><button class='btn' onclick='deleteProduct(${product.product_id})'>Delete</button></td>
+        `;
+      });
+    }
+
+    // ฟังก์ชันเพื่อเพิ่มสินค้าใหม่
+    document.getElementById('addProductForm').addEventListener('submit', function(event) {
+      event.preventDefault();  // ป้องกันการรีเฟรชหน้า
+
+      const id = document.getElementById('productId').value;
+      const name = document.getElementById('productName').value;
+      const price = document.getElementById('productPrice').value;
+      const stock = document.getElementById('productStock').value;
+
+      const newProduct = { product_id: id, product_name: name, price: price, stock: stock };
+      const products = JSON.parse(localStorage.getItem('products')) || [];
+      products.push(newProduct);
+
+      // บันทึกข้อมูลลง localStorage
+      localStorage.setItem('products', JSON.stringify(products));
+
+      // รีเซ็ตฟอร์ม
+      document.getElementById('addProductForm').reset();
+
+      // โหลดข้อมูลสินค้าทันที
+      loadProducts();
+    });
+
+    // ฟังก์ชันเพื่อลบสินค้า
+    function deleteProduct(productId) {
+      let products = JSON.parse(localStorage.getItem('products')) || [];
+      products = products.filter(product => product.product_id !== productId);
+
+      // บันทึกข้อมูลใหม่ลง LocalStorage
+      localStorage.setItem('products', JSON.stringify(products));
+
+      // โหลดข้อมูลสินค้าทันที
+      loadProducts();
+    }
+
+    // โหลดสินค้าเมื่อหน้าเว็บโหลดเสร็จ
+    window.onload = loadProducts;
+  </script>
+
+  <footer>
+    <p>© 2025 BEYONCE Clothing | Admin Panel</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Reviews - BEYONCE Shop</title>
+
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --main-color: #0052cc;
+            --accent-color: #ffdd57;
+            --bg-color: #f4f7fb;
+            --card-bg: #ffffff;
+            --text-color: #111827;
+            --font: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--main-color);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px 0;
+            background-color: white;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--main-color);
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--main-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--main-color);
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--main-color);
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table thead {
+            background-color: var(--main-color);
+            color: white;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:hover {
+            background-color: #eef3ff;
+        }
+
+        .full-star {
+            color: #f4c430;
+        }
+
+        .half-star {
+            color: #f4c430;
+            background: linear-gradient(to right, #f4c430 50%, #ddd 50%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .empty-star {
+            color: #ddd;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            overflow: auto;
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 70%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+        background: #111827;
+        color: #eee;
+        text-align: center;
+        padding: 24px 0;
+        margin-top: 60px;
+        font-size: 14px;
+        
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .view-reviews {
+            color: var(--main-color); /* This will make the text the same color as your main theme */
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none; /* Initially no underline */
+        }
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+
+.view-reviews:hover {
+    text-decoration: underline; /* Underline when hovered */
+    color: #003b99; /* Optional: Darker color on hover for effect */
+}
+
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            table th,
+            table td {
+                padding: 10px 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Product Reviews - BEYONCE Shop</h1>
+    </header>
+
+    <nav>
+        <ul>
+          <li><a href="index_admin.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
+          <li><a href="product_management.html"><i class="fas fa-boxes"></i> Product Management</a></li>
+          <li><a href="order_tracking.html"><i class="fas fa-clipboard-list"></i> Orders</a></li>
+          <li><a href="cusmoter_review_admin.html"><i class="fas fa-star"></i> Customer Reviews</a></li>
+          <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+          <li><a href="index.html" onclick="return logoutConfirm();">Log out</a></li>
+        </ul>
+      </nav>
+      
+      <script>
+        function logoutConfirm() {
+          alert("Thank you for visiting BEYONCE Shop. See you again soon! 🛍️");
+          return true; // ดำเนินการไปยัง index.html
+        }
+      
+      </script>
+    <div class="container">
+        <h2>Customer Reviews</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Average Rating</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="productReviews">
+                <tr data-product-id="1">
+                    <td>Product 1</td>
+                    <td class="rating"></td>
+                    <td><span class="view-reviews" onclick="openModal(1)">View Reviews</span></td>
+                </tr>
+                <tr data-product-id="2">
+                    <td>Product 2</td>
+                    <td class="rating"></td>
+                    <td><span class="view-reviews" onclick="openModal(2)">View Reviews</span></td>
+                </tr>
+                <tr data-product-id="3">
+                    <td>Product 3</td>
+                    <td class="rating"></td>
+                    <td><span class="view-reviews" onclick="openModal(3)">View Reviews</span></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for reviews -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const reviews = [
+            { id: 1, rating: 5, review: 'Great quality!', date: 'March 15, 2025', name: 'm****', productId: 1 },
+            { id: 2, rating: 4, review: 'Very good, but shipping was slow.', date: 'March 16, 2025', name: 'j****', productId: 1 },
+            { id: 3, rating: 3, review: 'Average quality.', date: 'March 17, 2025', name: 't****', productId: 2 },
+            { id: 4, rating: 5, review: 'Love the shoes! Highly recommend.', date: 'March 18, 2025', name: 'a****', productId: 3 },
+        ];
+
+        // Function to calculate the average rating
+        function calculateAverageRating(productId) {
+            const filteredReviews = reviews.filter(review => review.productId == productId);
+            const totalRating = filteredReviews.reduce((acc, review) => acc + review.rating, 0);
+            const averageRating = totalRating / filteredReviews.length;
+            return averageRating;
+        }
+
+        // Function to display the stars based on the average rating
+        function displayAverageRating(productId, element) {
+            const averageRating = calculateAverageRating(productId);
+            const fullStars = Math.floor(averageRating);
+            const halfStar = averageRating % 1 >= 0.5 ? 1 : 0;
+            const emptyStars = 5 - fullStars - halfStar;
+
+            // Clear existing stars
+            element.innerHTML = '';
+
+            // Append full stars
+            for (let i = 0; i < fullStars; i++) {
+                const star = document.createElement('span');
+                star.classList.add('full-star');
+                star.innerHTML = '★'; // Full star
+                element.appendChild(star);
+            }
+
+            // Append half star if needed
+            if (halfStar) {
+                const star = document.createElement('span');
+                star.classList.add('half-star');
+                star.innerHTML = '★'; // Half star (we'll style it)
+                element.appendChild(star);
+            }
+
+            // Append empty stars
+            for (let i = 0; i < emptyStars; i++) {
+                const star = document.createElement('span');
+                star.classList.add('empty-star');
+                star.innerHTML = '★'; // Empty star
+                element.appendChild(star);
+            }
+        }
+
+        // Function to open modal
+        function openModal(productId) {
+            const filteredReviews = reviews.filter(review => review.productId == productId);
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = '';
+
+            filteredReviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.innerHTML = `
+                    <p><strong>${review.name}</strong> rated: ${review.rating} stars</p>
+                    <p>${review.review}</p>
+                    <p><em>${review.date}</em></p>
+                    <hr>
+                `;
+                modalContent.appendChild(reviewElement);
+            });
+
+            // Show modal
+            document.getElementById('reviewModal').style.display = 'flex';
+        }
+
+        // Close modal by clicking the close button
+        document.getElementById('closeModal').addEventListener('click', function () {
+            document.getElementById('reviewModal').style.display = 'none';
+        });
+
+        // Close modal by clicking outside the modal content
+        window.addEventListener('click', function (event) {
+            const modal = document.getElementById('reviewModal');
+            const modalContent = document.querySelector('.modal-content');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Display average ratings on page load
+        document.querySelectorAll('.rating').forEach(starElement => {
+            const productId = starElement.closest('tr').getAttribute('data-product-id');
+            displayAverageRating(productId, starElement);
+        });
+    </script>
+<footer>
+    <p>© 2025 BEYONCE Clothing | Email: support@beyonce-shop.com</p>
+</footer>
+
+</body>
+
+</html>

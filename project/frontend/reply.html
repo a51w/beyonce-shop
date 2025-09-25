@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reply to Customer - BEYONCE Shop</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-color: #0052cc;
+      --bg-color: #f4f7fb;
+      --card-bg: #ffffff;
+      --font: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg-color);
+      padding: 40px;
+      color: #111827;
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: var(--main-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: var(--main-color);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #003399;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Reply to Customer</h2>
+    <form action="#" method="post">
+      <label for="to">To</label>
+      <input type="email" id="to" name="to" readonly>
+
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" placeholder="Enter subject">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Write your message here"></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <script>
+    // Automatically fill "To" field from URL param
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    if (email) {
+      document.getElementById('to').value = email;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart - BEYONCE Shop</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+  <style>
+    :root {
+      --primary: #0052cc;
+      --primary-light: #e6f0ff;
+      --secondary: #ffdd57;
+      --danger: #ff4444;
+      --success: #4CAF50;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --white: #ffffff;
+      --border-radius: 8px;
+      --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary), #003d99);
+      color: var(--white);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      position: relative;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 9;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    nav ul li {
+      margin: 0 0.5rem;
+    }
+
+    nav ul li a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--primary-light);
+    }
+
+    nav ul li a i {
+      font-size: 0.9rem;
+    }
+
+    .cart-icon-container {
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      background-color: var(--secondary);
+      color: var(--dark);
+      border-radius: 50%;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+
+    /* Main Content */
+    .main-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Cart Container */
+    .cart-container {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #eee;
+      background-color: var(--primary-light);
+    }
+
+    .cart-header h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cart-header h2 i {
+      color: var(--primary);
+    }
+
+    .cart-items-count {
+      font-weight: 600;
+      color: var(--gray);
+    }
+
+    /* Cart Table */
+    .cart-table-container {
+      overflow-x: auto;
+    }
+
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .cart-table thead {
+      background-color: #f8f9fa;
+    }
+
+    .cart-table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--dark);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .cart-table td {
+      padding: 1.25rem 1rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .cart-item-name {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .cart-item-sku {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .cart-item-price {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Quantity Control */
+    .quantity-control {
+      display: flex;
+      align-items: center;
+    }
+
+    .quantity-btn {
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--primary-light);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .quantity-btn:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .quantity-input {
+      width: 3rem;
+      text-align: center;
+      margin: 0 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      padding: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Remove Button */
+    .remove-btn {
+      background-color: transparent;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .remove-btn:hover {
+      color: var(--danger);
+      background-color: rgba(255, 68, 68, 0.1);
+    }
+
+    /* Cart Summary */
+    .cart-summary {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .summary-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .summary-title i {
+      color: var(--primary);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .summary-label {
+      color: var(--gray);
+    }
+
+    .summary-value {
+      font-weight: 500;
+    }
+
+    .summary-total {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    /* Cart Actions */
+    .cart-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .continue-shopping-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--light);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .continue-shopping-btn:hover {
+      background-color: #e9ecef;
+    }
+
+    .checkout-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .checkout-btn:hover {
+      background-color: #0040a3;
+      transform: translateY(-2px);
+    }
+
+    /* Empty Cart */
+    .empty-cart {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .empty-cart-icon {
+      font-size: 4rem;
+      color: #e9ecef;
+      margin-bottom: 1.5rem;
+    }
+
+    .empty-cart-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--dark);
+    }
+
+    .empty-cart-message {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Alert */
+    .alert {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background-color: var(--success);
+      color: var(--white);
+      padding: 1rem 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+
+    .alert.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .alert i {
+      font-size: 1.25rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-column h3 {
+      color: var(--white);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-column ul li a {
+      color: #adb5bd;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--white);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--white);
+      font-size: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--secondary);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      border-top: 1px solid #495057;
+      font-size: 0.85rem;
+      color: #adb5bd;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .cart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .cart-actions {
+        flex-direction: column;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      nav ul {
+        justify-content: space-around;
+      }
+
+      nav ul li {
+        margin: 0.25rem 0;
+      }
+
+      .cart-table th, 
+      .cart-table td {
+        padding: 0.75rem 0.5rem;
+      }
+
+      .quantity-control {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .quantity-input {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BEYONCE Shop</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index_user.html"><i class="fas fa-home"></i> Home</a></li>
+      <!--<li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
+      <li><a href="product_management.html"><i class="fas fa-boxes"></i> Product Management</a></li>
+      <li><a href="order_tracking.html"><i class="fas fa-clipboard-list"></i> Orders</a></li>
+      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>-->
+      <li><a href="account.html"><i class="fas fa-user-circle"></i> My Account</a></li>
+      <li><a href="index.html" onclick="return logoutConfirm();">Log out</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    function logoutConfirm() {
+      alert("Thank you for visiting BEYONCE Shop. See you again soon! 🛍️");
+      return true; // ดำเนินการไปยัง index.html
+    }
+  </script>
+
+  <div class="main-container">
+    <div class="cart-container">
+      <div class="cart-header">
+        <h2><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h2>
+        <span class="cart-items-count">Items in cart: <span id="cart-items-count">0</span></span>
+      </div>
+      
+      <div id="cart-content">
+        <!-- Cart content will be dynamically inserted by JavaScript -->
+        <div class="empty-cart">
+          <div class="empty-cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <h3 class="empty-cart-title">Your cart is empty</h3>
+          <p class="empty-cart-message">You haven't added any items to your cart yet. Start shopping to fill it up!</p>
+          <a href="index.html" class="continue-shopping-btn">
+            <i class="fas fa-arrow-left"></i> Continue Shopping
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div id="cart-summary" class="cart-summary" style="display: none;">
+      <h3 class="summary-title"><i class="fas fa-receipt"></i> Order Summary</h3>
+      <div class="summary-row">
+        <span class="summary-label">Subtotal</span>
+        <span class="summary-value">฿<span id="subtotal">0</span></span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Shipping</span>
+        <span class="summary-value">฿50</span>
+      </div>
+      <div class="summary-row summary-total">
+        <span>Total</span>
+        <span>฿<span id="total">0</span></span>
+      </div>
+      
+      <div class="cart-actions">
+        <a href="index_user.html" class="continue-shopping-btn">
+          <i class="fas fa-arrow-left"></i> Continue Shopping
+        </a>
+        <button class="checkout-btn" onclick="window.location.href='check_out.html';">
+          <i class="fas fa-credit-card"></i> Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+  
+
+ <!-- Footer -->
+ <footer>
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>About Us</h3>
+      <p>BEYONCE Shop is an online fashion store focused on offering stylish and up-to-date clothing and accessories.</p>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product_management.html">All Products</a></li>
+        <li><a href="#">Promotions</a></li>
+        <li><a href="review.html">Customer Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Customer Service</h3>
+      <ul>
+        <li><a href="#">Purchase Policy</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact Information</h3>
+      <ul>
+        <li><i class="fas fa-map-marker-alt"></i> 123 Fashion Road, Bangkok</li>
+        <li><i class="fas fa-phone"></i> 02-123-4567</li>
+        <li><i class="fas fa-envelope"></i> support@beyonce-shop.com</li>
+        <li><i class="fas fa-clock"></i> Mon–Fri 09:00–18:00</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2025 BEYONCE Clothing. All rights reserved.</p>
+  </div>
+</footer>
+
+  <div id="alert" class="alert">
+    <i class="fas fa-check-circle"></i>
+    <span id="alert-message"></span>
+  </div>
+
+  <script>
+    // ตัวแปรเก็บข้อมูลตะกร้าสินค้า
+    let cart = [];
+    
+    // เมื่อหน้าเว็บโหลดเสร็จ
+    document.addEventListener('DOMContentLoaded', function() {
+      // ดึงข้อมูลตะกร้าจาก localStorage
+      const savedCart = localStorage.getItem('beyonceShopCart');
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        renderCart();
+      }
+      
+      // อัพเดทจำนวนสินค้าใน nav
+      updateCartCount();
+    });
+    
+    // แสดงตะกร้าสินค้า
+    function renderCart() {
+      const cartContent = document.getElementById('cart-content');
+      const cartSummary = document.getElementById('cart-summary');
+      
+      if (cart.length === 0) {
+        cartContent.innerHTML = `
+          <div class="empty-cart">
+            <div class="empty-cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3 class="empty-cart-title">ตะกร้าสินค้าของคุณว่างเปล่า</h3>
+            <p class="empty-cart-message">ยังไม่มีสินค้าในตะกร้าของคุณ เริ่มช้อปปิ้งเพื่อเพิ่มสินค้าเข้าตะกร้า</p>
+            <a href="index.html" class="continue-shopping-btn">
+              <i class="fas fa-arrow-left"></i> กลับไปช้อปปิ้งต่อ
+            </a>
+          </div>
+        `;
+        cartSummary.style.display = 'none';
+        return;
+      }
+      
+      let html = `
+        <div class="cart-table-container">
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th>สินค้า</th>
+                <th>ราคา</th>
+                <th>จำนวน</th>
+                <th>รวม</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+      
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        
+        html += `
+          <tr>
+            <td>
+              <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div>
+                  <div class="cart-item-name">${item.name}</div>
+                  <div class="cart-item-sku">SKU: ${generateSKU(item.name)}</div>
+                </div>
+              </div>
+            </td>
+            <td class="cart-item-price">฿${item.price.toLocaleString()}</td>
+            <td>
+              <div class="quantity-control">
+                <button class="quantity-btn" onclick="updateQuantity('${item.name}', ${item.quantity - 1})">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" value="${item.quantity}" min="1" 
+                  onchange="updateQuantity('${item.name}', this.value)">
+                <button class="quantity-btn" onclick="updateQuantity('${item.name}', ${item.quantity + 1})">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </td>
+            <td class="cart-item-price">฿${itemTotal.toLocaleString()}</td>
+            <td>
+              <button class="remove-btn" onclick="removeFromCart('${item.name}')">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+      
+      html += `
+            </tbody>
+          </table>
+        </div>
+      `;
+      
+      cartContent.innerHTML = html;
+      document.getElementById('cart-items-count').textContent = 
+        cart.reduce((sum, item) => sum + item.quantity, 0);
+      
+      // อัพเดทสรุปคำสั่งซื้อ
+      document.getElementById('subtotal').textContent = subtotal.toLocaleString();
+      document.getElementById('total').textContent = (subtotal + 50).toLocaleString();
+      cartSummary.style.display = 'block';
+    }
+    
+    // สร้าง SKU สมมติจากชื่อสินค้า
+    function generateSKU(name) {
+      return name.replace(/\s+/g, '').toUpperCase().substring(0, 6) + 
+             Math.floor(100 + Math.random() * 900);
+    }
+    
+    // อัพเดทจำนวนสินค้า
+    function updateQuantity(name, newQuantity) {
+      newQuantity = parseInt(newQuantity);
+      if (newQuantity < 1) newQuantity = 1;
+      
+      const item = cart.find(item => item.name === name);
+      if (item) {
+        item.quantity = newQuantity;
+        saveCart();
+        renderCart();
+        updateCartCount();
+        showAlert(`อัพเดทจำนวน ${name} เป็น ${newQuantity} ชิ้น`);
+      }
+    }
+    
+    // ลบสินค้าออกจากตะกร้า
+    function removeFromCart(name) {
+      cart = cart.filter(item => item.name !== name);
+      saveCart();
+      renderCart();
+      updateCartCount();
+      showAlert(`ลบ ${name} ออกจากตะกร้าแล้ว`);
+    }
+    
+    // บันทึกตะกร้าลง localStorage
+    function saveCart() {
+      localStorage.setItem('beyonceShopCart', JSON.stringify(cart));
+    }
+    
+    // อัพเดทจำนวนสินค้าใน nav
+    function updateCartCount() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.querySelector('.cart-count').textContent = totalItems;
+    }
+    
+    // ดำเนินการชำระเงิน
+    function checkout() {
+      if (cart.length === 0) {
+        showAlert('ตะกร้าสินค้าว่าง ไม่สามารถชำระเงินได้');
+        return;
+      }
+      window.location.href = 'checkout.html';
+    }
+    
+    // แสดงการแจ้งเตือน
+    function showAlert(message) {
+      const alert = document.getElementById('alert');
+      const alertMessage = document.getElementById('alert-message');
+      
+      alertMessage.textContent = message;
+      alert.classList.add('show');
+      
+      setTimeout(() => {
+        alert.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

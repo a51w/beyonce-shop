@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - BEYONCE Shop</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --primary: #0052cc;
+      --primary-light: #e6f0ff;
+      --secondary: #ffdd57;
+      --danger: #ff4444;
+      --success: #4CAF50;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --white: #ffffff;
+      --border-radius: 8px;
+      --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #003d99);
+      color: var(--white);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .checkout-container {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 2rem;
+    }
+
+    .checkout-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .checkout-header h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .checkout-header p {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 82, 204, 0.3);
+    }
+
+    .order-summary {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: var(--light);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    .order-summary h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .summary-label {
+      color: var(--gray);
+    }
+
+    .summary-value {
+      font-weight: 500;
+    }
+
+    .summary-total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .checkout-actions {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .back-to-cart-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--light);
+      color: var(--dark);
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .back-to-cart-btn:hover {
+      background-color: #e9ecef;
+    }
+
+    .place-order-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .place-order-btn:hover {
+      background-color: #0040a3;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: #adb5bd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Checkout</h1>
+  </header>
+
+  <div class="main-container">
+    <div class="checkout-container">
+      <div class="checkout-header">
+        <h2>Complete Your Order</h2>
+        <p>Please fill in your details to proceed with the payment.</p>
+      </div>
+
+      <form action="process_checkout.php" method="POST">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Shipping Address</label>
+          <textarea id="address" name="address" rows="4" placeholder="Enter your shipping address" required></textarea>
+        </div>
+
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-row">
+            <span class="summary-label">Subtotal</span>
+            <span class="summary-value">฿<span id="subtotal">0</span></span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Shipping</span>
+            <span class="summary-value">฿50</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span>฿<span id="total">0</span></span>
+          </div>
+        </div>
+
+        <div class="checkout-actions">
+          <a href="cart.html" class="back-to-cart-btn">
+            <i class="fas fa-arrow-left"></i> Back to Cart
+          </a>
+          <button type="submit" class="place-order-btn">
+            <i class="fas fa-credit-card"></i> Place Order
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 BEYONCE Clothing. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mock data for subtotal and total
+    document.addEventListener('DOMContentLoaded', function () {
+      const subtotal = 1500; // Example subtotal
+      const shipping = 50;
+      const total = subtotal + shipping;
+
+      document.getElementById('subtotal').textContent = subtotal.toLocaleString();
+      document.getElementById('total').textContent = total.toLocaleString();
+    });
+  </script>
+</body>
+</html>

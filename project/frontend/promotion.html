@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Promotions - BEYONCE Shop</title>
+
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --main-color: #0052cc;
+      --accent-color: #ffdd57;
+      --bg-color: #f4f7fb;
+      --card-bg: #ffffff;
+      --text-color: #111827;
+      --font: 'Inter', sans-serif;
+      --sale-color: #ff5500;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--main-color);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 15px 0;
+      background-color: white;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--main-color);
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--main-color);
+      color: white;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--sale-color), #ff8c00);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      margin-bottom: 40px;
+    }
+
+    .page-header h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .page-header p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .sale-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: var(--sale-color);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .product-image {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .product-desc {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .price-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .current-price {
+      font-size: 20px;
+      color: var(--sale-color);
+      font-weight: bold;
+    }
+
+    .original-price {
+      font-size: 16px;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .discount-percent {
+      background-color: #ffeee6;
+      color: var(--sale-color);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #111827;
+      color: #eee;
+      padding: 40px 0 24px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column ul li a:hover {
+      color: white;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #333;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BEYONCE Shop - Promotions</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      
+    </ul>
+  </nav>
+
+  <section class="page-header">
+    <h2>Special Promotions</h2>
+    <p>Discover exclusive deals and discounts just for you!</p>
+  </section>
+
+  <div class="container">
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="sale-badge">Sale</div>
+        <div class="product-image">
+          <img src="assets/black-T.jpg" alt="Black T-Shirt">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Classic Black T-Shirt</h3>
+          <p class="product-desc">High-quality cotton t-shirt, comfortable for all occasions.</p>
+          <div class="price-container">
+            <span class="current-price">฿500</span>
+            <span class="original-price">฿650</span>
+            <span class="discount-percent">-23%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="sale-badge">Sale</div>
+        <div class="product-image">
+          <img src="assets/Mini-Dress.jpg" alt="Mini Dress">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Summer Mini Dress</h3>
+          <p class="product-desc">Lightweight and stylish mini dress, perfect for summer.</p>
+          <div class="price-container">
+            <span class="current-price">฿1,200</span>
+            <span class="original-price">฿1,500</span>
+            <span class="discount-percent">-20%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="sale-badge">Sale</div>
+        <div class="product-image">
+          <img src="assets/Denim-Jacket.jpg" alt="Denim Jacket">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Classic Denim Jacket</h3>
+          <p class="product-desc">Timeless denim jacket, suitable for all seasons.</p>
+          <div class="price-container">
+            <span class="current-price">฿750</span>
+            <span class="original-price">฿950</span>
+            <span class="discount-percent">-21%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="sale-badge">Sale</div>
+        <div class="product-image">
+          <img src="assets/Comfy-Hoodie.jpg" alt="Comfy Hoodie">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Comfy Cotton Hoodie</h3>
+          <p class="product-desc">Soft and cozy cotton hoodie, perfect for relaxing days.</p>
+          <div class="price-container">
+            <span class="current-price">฿850</span>
+            <span class="original-price">฿1,100</span>
+            <span class="discount-percent">-23%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>About Us</h3>
+        <p>BEYONCE Shop is an online fashion store focused on style and quality.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Main Menu</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="review.html">Customer Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Customer Service</h3>
+        <ul>
+          <li><a href="#">Purchase Policy</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contact Information</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> 123 Fashion Road, Bangkok</li>
+          <li><i class="fas fa-phone"></i> 02-123-4567</li>
+          <li><i class="fas fa-envelope"></i> support@beyonce-shop.com</li>
+          <li><i class="fas fa-clock"></i> Mon–Fri 09:00–18:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2025 BEYONCE Clothing. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

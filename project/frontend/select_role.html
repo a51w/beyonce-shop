@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Role - BEYONCE Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-color: #0052cc;
+      --bg-color: #f4f7fb;
+      --card-bg: #ffffff;
+      --text-color: #111827;
+      --font: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+    }
+
+    html, body {
+      height: 100vh;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: var(--card-bg);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      color: var(--text-color);
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+
+    .login-container .btn {
+      display: block;
+      width: 100%;
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      padding: 14px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-container .btn:hover {
+      background-color: #003da6;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Select Your Role</h2>
+    <a href="customer_login.html" class="btn">Customer Login</a>
+    <a href="admin_login.html" class="btn">Admin Login</a>
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+</body>
+</html>

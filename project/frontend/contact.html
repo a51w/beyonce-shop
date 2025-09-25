@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - BEYONCE Shop</title>
+
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --main-color: #0052cc;
+      --accent-color: #ffdd57;
+      --bg-color: #f4f7fb;
+      --card-bg: #ffffff;
+      --text-color: #111827;
+      --font: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--main-color);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 15px 0;
+      background-color: white;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--main-color);
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--main-color);
+      color: white;
+    }
+
+    .content {
+      flex: 1;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .contact-container {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--main-color);
+      color: white;
+    }
+
+    footer {
+      background: #111827;
+      color: #eee;
+      text-align: center;
+      padding: 24px 0;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    a.email-link {
+      color: var(--main-color);
+      text-decoration: underline;
+    }
+
+    a.email-link:hover {
+      color: #003399;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Contact Us</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index_admin.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
+      <li><a href="product_management.html"><i class="fas fa-boxes"></i> Product Management</a></li>
+      <li><a href="order_tracking.html"><i class="fas fa-clipboard-list"></i> Orders</a></li>
+      <li><a href="cusmoter_review_admin.html"><i class="fas fa-star"></i> Customer Reviews</a></li>
+      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+      <li><a href="index.html" onclick="return logoutConfirm();">Log out</a></li>
+    </ul>
+  </nav>
+  
+  <script>
+    function logoutConfirm() {
+      alert("Thank you for visiting BEYONCE Shop. See you again soon! 🛍️");
+      return true; // ดำเนินการไปยัง index.html
+    }
+  
+  </script>
+  <div class="content">
+    <section class="contact-container">
+      <h2>Customer Inquiries</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Date Sent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Graphic T-shirt</td>
+            <td>Sample Customer</td>
+            <td><a class="email-link" href="reply.html?email=customer@example.com">customer@example.com</a></td>
+            <td>I have a question about this product.</td>
+            <td>2025-03-10</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 BEYONCE Clothing | Email: support@beyonce-shop.com</p>
+  </footer>
+</body>
+
+</html>
