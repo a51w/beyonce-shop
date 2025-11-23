@@ -10,4 +10,6 @@ The website provides a user-friendly and fast experience. Products are displayed
 For Admins:
 The system is designed for easy and efficient management. Admins can update product details, monitor stock, and manage data quickly. A real-time dashboard provides sales analytics and statistics, helping admins track sales trends, plan purchases, and make business decisions. The system also supports promotional announcements to attract users and boost sales.
 
+# Data base Design
+
 In summary, this online shopping website meets the needs of both users and admins. It ensures efficiency, convenience, and security while improving purchasing decisions, minimizing order and delivery issues, and supporting effective online business management.
